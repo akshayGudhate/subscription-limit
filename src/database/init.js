@@ -1,5 +1,5 @@
-const request = require("./request");				// database - request
 const organization = require("./organization");		// database - organization
+const request = require("./request");				// database - request
 
 
 /////////////////////////
@@ -23,10 +23,18 @@ const initDatabase = async () => {
 		//        indexes       //
 		//////////////////////////
 
-		// keys
-		return request.initIndexRequestCount();
+		// request count
+		await request.initIndexRequestCount();
+
+		//////////////////////////
+		//         views        //
+		//////////////////////////
+
+		// request count
+		return organization.initViewOrganizationSubscriptionDetails();
 
 	} catch (err) {
+		console.error(err);
 		// throw error
 		throw err;
 	}

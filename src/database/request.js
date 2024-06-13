@@ -1,6 +1,6 @@
 const postgres = require("./pool");		// postgres pool instance
 // placeholders
-const request = {};						// requests object
+const request = {};						// request object
 
 
 /////////////////////////
@@ -20,6 +20,7 @@ request.initTableRequests = async () => {
             `
 		);
 	} catch (err) {
+		console.error(err);
 		// throw error
 		throw err;
 	}
@@ -31,11 +32,12 @@ request.initIndexRequestCount = async () => {
 	try {
 		await postgres.query(
 			`
-            CREATE INDEX IF NOT EXISTS idx_requests_organization_count
-			ON requests (organization_id, time_stamp);
+            CREATE INDEX IF NOT EXISTS idx_organization_request_count
+			ON requests(organization_id, time_stamp);
             `
 		);
 	} catch (err) {
+		console.error(err);
 		// throw error
 		throw err;
 	}
