@@ -46,7 +46,7 @@ const validateAPIKey = async (req, res, next) => {
 		// check request monthly limit
 		if (remainingRequestCount && remainingRequestCount == 0) {
 			return res.status(429).json({
-				info: "Too may requests.",
+				info: "Too many requests.",
 				data: null
 			});
 		};

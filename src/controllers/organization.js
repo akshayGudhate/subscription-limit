@@ -32,7 +32,7 @@ router.post(
 					break;
 				default:
 					return res.status(400).json({
-						info: "Unknown subscription plan! Please enter correct plan.",
+						info: "Unknown subscription plan! Please enter the correct plan.",
 						data: null
 					});
 			};

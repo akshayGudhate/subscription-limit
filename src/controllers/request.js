@@ -22,7 +22,7 @@ router.get(
 			const tooManyRequest = await modelRequest.saveNewRequest(organizationDetails.organization_id);
 			if (tooManyRequest) {
 				return res.status(429).json({
-					info: "Too may requests.",
+					info: "Too many requests.",
 					data: null
 				});
 			}
