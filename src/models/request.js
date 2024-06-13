@@ -10,11 +10,10 @@ const request = {};								// request object
 // save new request
 request.saveNewRequest = async (organizationID) => {
 	let tooManyRequest = true;
+	// connect for multiple statements in single transaction
+	const client = await postgres.connect();
 
 	try {
-		// connect for multiple statements in single transaction
-		const client = await postgres.connect();
-
 		// begin transaction and lock table for update
 		await client.query("BEGIN;");
 		await client.query("LOCK TABLE requests IN SHARE ROW EXCLUSIVE MODE;");
