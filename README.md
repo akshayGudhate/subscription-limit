@@ -1,10 +1,10 @@
-# Welcome to project...
-A small project for organizations where they can opt for a monthly request limit. And on the basic of limit they can access API.
+# Welcome to a project...
+A small project for organizations where they can opt for a monthly request limit. And based on the limit they can access API.
 
 
 ## Database
 
-This project is using postgres, and the below are the db details.
+This project is using Postgres, and below are the db details.
 
 Tables:
 
@@ -56,25 +56,25 @@ Views:
 ```
 
 ## Engineering Design Decisions
-1. Separated `organization` table and `organization_subscriptions` table. As we may need change in subscription details. To maintain the safety.
-2. Created index on `requests` table for getting the `monthly request count` efficiently.
-3. Created `view` to remove redundancy of using same join and same information everywhere.
-4. Here we could have use `Materialized Views` for the `monthly request count` as a caching. But we need to refresh the view periodically to maintain consistency.
+1. Separated `organization` table and `organization_subscriptions` table. As we may need to change subscription details. To maintain the safety.
+2. Created index on the `requests` table for efficiently getting the `monthly request count`.
+3. Created `view` to remove the redundancy of using the same join and the same information everywhere.
+4. Here we could have used `Materialized Views` for the `monthly request count` as a caching. But we need to refresh the view periodically to maintain consistency.
 5. Middleware is used to handle the `monthly limit` so we can reuse the functionality.
-6. In middleware I have attached `organization data` to the request object. So that we can use in any controller later.
-7. Used `row level lock` for the managing the concurrency in the project as multiple read, insert may cause problem.
+6. In middleware I have attached `organization data` to the request object so we can use it in any controller later.
+7. Used `row level lock` for managing the concurrency in the project as multiple read, inserts may cause problems.
 
 
 
 ## Features
 - _Register organization_
-- _Admin dashboard_ : admin can see all organization details.
-- _Organization details_ : this api has a monthly limit.
+- _Admin dashboard_: admin can see all organization details.
+- _Organization details_: this api has a monthly limit.
 
 
 ## Useful commands
 
-The project makes use of node and its package manager to help you out carrying some common tasks such as running project.
+The project makes use of node and its package manager to help you out carrying some common tasks such as running a project.
 
 ### Install dependencies
 
@@ -142,7 +142,7 @@ Parameters
 | `limit`            | Optional | Request limit number                          | Positive Integer - `13`        |
 
 
-Example of output - when organization registered successfully
+Example of output - when the organization registered successfully
 
 `HTTP Status Code: 200`
 
@@ -156,13 +156,13 @@ Example of output - when organization registered successfully
 }
 ```
 
-Example of output - when entered wrong plan
+Example of output - when entering the wrong plan
 
 `HTTP Status Code: 400`
 
 ```json
 {
-    "info": "Unknown subscription plan! Please enter correct plan.",
+    "info": "Unknown subscription plan! Please enter the correct plan.",
     "data": null
 }
 ```
@@ -256,7 +256,7 @@ Headers
 | `x-api-key` | Get api key by registering organization | `yT4mCk25dC`       |
 
 
-Example of output - When API key is not provided
+Example of output - When the API key is not provided
 
 `HTTP Status Code: 401`
 
@@ -305,7 +305,7 @@ Example of output - When reached monthly limit
 
 ```json
 {
-    "info": "Too may requests.",
+    "info": "Too many requests.",
     "data": null
 }
 
@@ -327,10 +327,10 @@ https://shrimant-peshawa-8.postman.co/workspace/NPAV-Projects~9557b0b2-2f86-495e
 
 
 ## TODO's
-- Need to hash the `APIKey` and then store in the DB for security purpose.
-- Need to implement the `isAdmin` check using middleware for Authorization purpose.
-- Add more routes for dashboard and organization to enrich the experience.
-- Need to add test cases for whole project.
+- Need to hash the `APIKey` and then store it in the DB for security purposes.
+- Need to implement the `isAdmin` check using middleware for Authorization purposes.
+- Add more routes for the dashboard and organization to enrich the experience.
+- Need to add test cases for the whole project.
 
 
 
