@@ -15,7 +15,7 @@ organization.initTableOrganizations = async () => {
             CREATE TABLE IF NOT EXISTS organizations(
 			    organization_id	SERIAL 		PRIMARY KEY,
     			name 			TEXT 					NOT NULL,
-				email			TEXT					NOT NULL,
+				email			TEXT		UNIQUE		NOT NULL,
                 time_stamp		TIMESTAMPTZ				DEFAULT NOW()
             );
             `

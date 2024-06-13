@@ -1,8 +1,6 @@
-const router = require("express").Router();         			// express router
+const router = require("express").Router();             // express router
 // models
-const modelDashboard = require("../models/dashboard");	// model - dashboard
-// services
-const serviceAPIKey = require("../services/apiKey");			// service - api key
+const modelDashboard = require("../models/dashboard");  // model - dashboard
 
 
 ///////////////////////
@@ -11,10 +9,18 @@ const serviceAPIKey = require("../services/apiKey");			// service - api key
 
 router.get(
     "/",
-    async (req, res) => {
+    async (_req, res) => {
         try {
             // save new review
             const organizationList = (await modelDashboard.getOrganizationListWithRequestDetails()).rows;
+
+            // check for the data
+            if (organizationList.length == 0) {
+                return res.status(404).json({
+                    info: "No data found!",
+                    data: []
+                });
+            };
 
             return res.status(200).json({
                 info: "Organization list fetched successfully!",
