@@ -109,8 +109,8 @@ https://subscription-limit.onrender.com
 
 
 Example usage: 
-```text
-GET https://subscription-limit.onrender.com/api/v1/dashboard
+```link
+https://subscription-limit.onrender.com/api/v1/dashboard
 ```
 
 #### Register organization
