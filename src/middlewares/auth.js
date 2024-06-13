@@ -6,8 +6,7 @@ const modelRequest = require("../models/request");				// model - request
 //////////////////////////
 //    check validity    //
 //////////////////////////
-
-// validate webhook signature
+ 
 const validateAPIKey = async (req, res, next) => {
 	//
 	// parse request details
@@ -66,7 +65,6 @@ const validateAPIKey = async (req, res, next) => {
 		});
 	}
 };
-
 
 
 

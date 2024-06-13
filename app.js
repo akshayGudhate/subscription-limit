@@ -9,6 +9,7 @@ const serviceEnvironment = require("./src/services/environment");		// service - 
 // routes
 const routerOrganization = require("./src/controllers/organization");	// router - organization
 const routerRequest = require("./src/controllers/request");				// router - request
+const routerDashboard = require("./src/controllers/dashboard");			// router - dashboard
 
 
 /////////////////////////
@@ -47,6 +48,7 @@ const startServer = async () => {
 		//
 		app.use("/api/v1/organization", routerOrganization);			// route - organization
 		app.use("/api/v1/request", routerRequest);						// route - request
+		app.use("/api/v1/dashboard", routerDashboard);					// route - dashboard
 
 		//
 		// register http listener
