@@ -12,8 +12,10 @@ const PEO = process.env;
 const variables = {
 	// application
 	port: PEO.PORT || 8000,
-	// environment
+	// environment - {dev, prod, test}
 	environment: PEO.ENVIRONMENT,
+	// database
+	databaseURL: PEO.DATABASE_URL,
 };
 
 

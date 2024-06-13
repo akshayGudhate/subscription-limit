@@ -2,10 +2,12 @@ const express = require("express");									// express server module
 const helmet = require("helmet");									// set headers for better security
 const compression = require("compression");							// compressed assets
 const cors = require("cors");										// cors for react integration
+// database
+const database = require("./src/database/init");					// database
 // services
 const serviceEnvironment = require("./src/services/environment");	// service - environment
 //
-// TODO: add database and routes
+// TODO: add routes
 // 
 
 
@@ -36,13 +38,13 @@ app.use(
 const startServer = async () => {
 	try {
 		//
-		// TODO: initialize database
-		// 
+		// initialize database
+		//
+		await database.initDatabase();								// database - init
 
 		//
 		// TODO: api routes
 		//
-
 
 		//
 		// register http listener
@@ -52,7 +54,7 @@ const startServer = async () => {
 		});
 	} catch (err) {
 		// error
-		console.error("Server failed to start!!", err);
+		console.error("failed to start server!\n", err);
 	}
 };
 
