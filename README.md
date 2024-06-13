@@ -12,8 +12,8 @@ Tables:
 1. organizations
 
 - organization_id       - primary key
-- name
 - email                 - unique
+- name
 - time_stamp
 ```
 
