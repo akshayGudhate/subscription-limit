@@ -103,6 +103,15 @@ Run the application which will be listening on port `8080`. There are two ways t
 
 Below is a list of API endpoints with their respective input and output. Please note that the application needs to be running for the following endpoints to work.
 
+### Live App Base URL
+
+https://subscription-limit.onrender.com
+
+
+Example usage: 
+```text
+GET https://subscription-limit.onrender.com/api/v1/dashboard
+```
 
 #### Register organization
 
@@ -312,6 +321,9 @@ Example of output - on internal error
     "data": null
 }
 ```
+
+For more details check Postman Collection:
+https://shrimant-peshawa-8.postman.co/workspace/NPAV-Projects~9557b0b2-2f86-495e-87a8-21bc44882372/collection/8082221-620fbe2e-13f7-45bc-9119-bc88a8a093b9?action=share&creator=8082221
 
 
 ## TODO's
