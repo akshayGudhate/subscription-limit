@@ -3,6 +3,10 @@ const postgres = require("../database/pool");   // postgres pool instance
 const organization = {};                        // organization object
 
 
+/////////////////////////
+//    organizations    //
+/////////////////////////
+
 // register organization
 organization.registerOrganization = (name, email, apiKey, subscriptionPlan, monthlyLimit) => postgres.query(
     `
@@ -18,7 +22,6 @@ organization.registerOrganization = (name, email, apiKey, subscriptionPlan, mont
 	`,
     [name, email, apiKey, subscriptionPlan, monthlyLimit]
 );
-
 
 // check api key exist or not
 organization.getOrganizationDetailsByKey = (apiKey) => postgres.query(

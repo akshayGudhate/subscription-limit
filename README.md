@@ -134,7 +134,7 @@ Parameters
 
 Example of output - when the organization registered successfully
 
-`HTTP Status Code: 200`
+`HTTP Status Code: 201`
 
 ```json
 {

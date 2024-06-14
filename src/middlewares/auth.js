@@ -1,12 +1,14 @@
 // models
 const modelOrganization = require("../models/organization");	// model - organization
 const modelRequest = require("../models/request");				// model - request
+// utils
+const responseHandler = require("../utils/responseHandler");	// util - response handler
 
 
 //////////////////////////
 //    check validity    //
 //////////////////////////
- 
+
 const validateAPIKey = async (req, res, next) => {
 	//
 	// parse request details
@@ -18,10 +20,8 @@ const validateAPIKey = async (req, res, next) => {
 	//
 	try {
 		if (!apiKey) {
-			return res.status(401).json({
-				info: "Please add API key!",
-				data: null
-			});
+			// send http response
+			return responseHandler(res, 401, "Please add API key!");
 		};
 
 		// get organization details by api key
@@ -31,10 +31,8 @@ const validateAPIKey = async (req, res, next) => {
 		// if invalid
 		//
 		if (resultOrganizationDetails.rowCount == 0) {
-			return res.status(403).json({
-				info: "Invalid add API key!",
-				data: null
-			});
+			// send http response
+			return responseHandler(res, 403, "Invalid add API key!");
 		}
 
 		//
@@ -45,10 +43,8 @@ const validateAPIKey = async (req, res, next) => {
 
 		// check request monthly limit
 		if (remainingRequestCount && remainingRequestCount == 0) {
-			return res.status(429).json({
-				info: "Too many requests.",
-				data: null
-			});
+			// send http response
+			return responseHandler(res, 429, "Too many requests.");
 		};
 
 		// attach organization details to request object
@@ -58,11 +54,8 @@ const validateAPIKey = async (req, res, next) => {
 		// propagate request
 		next();
 	} catch (err) {
-		console.error(err);
-		return res.status(500).json({
-			info: "Something went wrong. An error has occurred.",
-			data: null
-		});
+		// send http response
+		return responseHandler(res, 500, "Something went wrong. An error has occurred.", null, err);
 	}
 };
 

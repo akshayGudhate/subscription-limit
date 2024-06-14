@@ -71,13 +71,11 @@ request.saveNewRequest = async (organizationID) => {
 	} catch (err) {
 		// on error rollback
 		await client.query("ROLLBACK;");
-		console.error(err);
 		throw err;
 	} finally {
 		client.release();
 	}
 };
-
 
 // get count for remaining requests
 request.getRemainingRequestCount = async (organizationID) => {

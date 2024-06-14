@@ -3,6 +3,10 @@ const postgres = require("../database/pool");   // postgres pool instance
 const dashboard = {};                           // dashboard object
 
 
+/////////////////////////
+//      dashboard      //
+/////////////////////////
+
 // check api key exist or not
 dashboard.getOrganizationListWithRequestDetails = () => postgres.query(
     `

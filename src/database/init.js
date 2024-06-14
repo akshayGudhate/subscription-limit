@@ -34,7 +34,6 @@ const initDatabase = async () => {
 		return organization.initViewOrganizationSubscriptionDetails();
 
 	} catch (err) {
-		console.error(err);
 		// throw error
 		throw err;
 	}

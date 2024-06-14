@@ -20,7 +20,6 @@ request.initTableRequests = async () => {
             `
 		);
 	} catch (err) {
-		console.error(err);
 		// throw error
 		throw err;
 	}
@@ -37,7 +36,6 @@ request.initIndexRequestCount = async () => {
             `
 		);
 	} catch (err) {
-		console.error(err);
 		// throw error
 		throw err;
 	}

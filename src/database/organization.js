@@ -21,7 +21,6 @@ organization.initTableOrganizations = async () => {
             `
 		);
 	} catch (err) {
-		console.error(err);
 		// throw error
 		throw err;
 	}
@@ -43,7 +42,6 @@ organization.initTableOrganizationSubscriptions = async () => {
             `
 		);
 	} catch (err) {
-		console.error(err);
 		// throw error
 		throw err;
 	}
@@ -71,7 +69,6 @@ organization.initViewOrganizationSubscriptionDetails = async () => {
             `
 		);
 	} catch (err) {
-		console.error(err);
 		// throw error
 		throw err;
 	}

@@ -1,6 +1,6 @@
-const { Pool } = require("pg");									// postgres connection pool
-// services
-const serviceEnvironment = require("../services/environment");	// service - environment
+const { Pool } = require("pg");							// postgres connection pool
+// environment
+const projectEnvironment = require("../environment");	// util - environment
 
 
 /////////////////////////
@@ -8,7 +8,7 @@ const serviceEnvironment = require("../services/environment");	// service - envi
 /////////////////////////
 
 // create postgres pool
-const pool = new Pool({ connectionString: serviceEnvironment.variables.databaseURL });
+const pool = new Pool({ connectionString: projectEnvironment.variables.databaseURL });
 
 
 /////////////////////////

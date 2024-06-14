@@ -1,3 +1,7 @@
+/////////////////////////
+//     new api key     //
+/////////////////////////
+
 const generateAPIKey = () => {
     // characters
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
