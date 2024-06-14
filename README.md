@@ -1,5 +1,5 @@
 # Welcome to my project...
-A small project for organizations where they can opt for a monthly request limit. And based on the limit they can access API.
+A small project for organizations where they can opt for a monthly request limit, and based on the limit they can access the request API. This project is the POC for the Subscription Handling.
 
 
 ## Database
@@ -326,8 +326,8 @@ Example usage: https://subscription-limit.onrender.com/api/v1/dashboard
 ## TODO's
 - Need to hash the `APIKey` and then store it in the DB for security purposes.
 - Need to implement the `isAdmin` check using middleware for Authorization purposes.
-- We can add more features like.. Payments, Subscriptions, and Notifications.
-- Add more routes for the dashboard and organization to enrich the experience.
+- We can add more features like.. `Payments, Subscriptions, and Notifications`.
+- Add more useful routes for the dashboard and organization to enrich the experience.
 - Need to add test cases for the whole project.
 
 
