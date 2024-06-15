@@ -394,7 +394,7 @@ https://shrimant-peshawa-8.postman.co/workspace/NPAV-Projects~9557b0b2-2f86-495e
 
 
 ## TODO's
-Below are the some of the points we can consider for improving **Reliability**, **Scalability** of the existing system.
+Below are some of the points we can consider for improving **Reliability**, and **Scalability** of the existing system.
 
 - Need to implement the _isAdmin_ check using middleware for _Authorization_ purposes.
 - While generating _apiKey_ we can use _subdomain_ instead of _organizationID_.
