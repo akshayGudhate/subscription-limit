@@ -324,16 +324,16 @@ https://shrimant-peshawa-8.postman.co/workspace/NPAV-Projects~9557b0b2-2f86-495e
 ### Live App
 
 Base URL: https://subscription-limit.onrender.com
-
-Example usage: https://subscription-limit.onrender.com/api/v1/dashboard
+Example usage of Live Server API: https://subscription-limit.onrender.com/api/v1/dashboard
 
 
 ## TODO's
 - Need to implement the _isAdmin_ check using middleware for Authorization purposes.
-- We can add more features like.. *Payments, Subscriptions, and Notifications*.
+- We can add more features like.. _*Payments, Subscriptions, and Notifications*_.
 - Add more useful routes for the dashboard and organization to enrich the experience.
 - While generating _apiKey_ we can use _subdomain_ instead of _organizationID_.
   
+
 
 
 ## Thank you!! Happy Coding!!
