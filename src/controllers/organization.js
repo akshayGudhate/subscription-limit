@@ -15,22 +15,14 @@ const registerOrganization = async (req, res) => {
 	try {
 		// parse details
 		const { name, email, subscriptionPlan, limit } = req.body;
-		// set limit
-		let monthlyLimit;
-		switch (subscriptionPlan) {
-			case "basic":
-				monthlyLimit = 10;
-				break;
-			case 'advance':
-				monthlyLimit = 15;
-				break;
-			case 'custom':
-				monthlyLimit = limit;
-				break;
-			default:
-				// send http response
-				return responseHandler(res, 400, "Unknown subscription plan! Please enter the correct plan.");
-		};
+
+		// send error if invalid plan
+		if (!["basic", "advance", "custom"].includes(subscriptionPlan)) {
+			// send http response
+			return responseHandler(res, 400, "Unknown subscription plan! Please enter the correct plan.");
+		}
+		// created limit object
+		const getMonthlyLimitObject = { "basic": 10, "advance": 15, "custom": limit };
 
 		// get api key
 		const apiKeyActual = utilityApiKey.generateApiKey();
@@ -38,7 +30,9 @@ const registerOrganization = async (req, res) => {
 
 		// save organization details
 		const organizationID = (
-			await modelOrganization.registerOrganization(name, email, apiKeyHashed, subscriptionPlan, monthlyLimit)
+			await modelOrganization.registerOrganization(
+				name, email, apiKeyHashed, subscriptionPlan, getMonthlyLimitObject[subscriptionPlan]
+			)
 		).rows[0].organization_id;
 
 		// append organizationID in apiKey
