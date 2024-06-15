@@ -26,7 +26,7 @@ request.saveNewRequest = async (organizationID) => {
 			FROM requests
 			WHERE 
 				organization_id = $1 AND
-				EXTRACT(MONTH FROM time_stamp) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP);
+				EXTRACT(MONTH FROM time_stamp) = EXTRACT(MONTH FROM NOW());
 			`,
 				[organizationID]
 			)
@@ -87,7 +87,7 @@ request.getRemainingRequestCount = async (organizationID) => {
 			FROM requests
 			WHERE 
 				organization_id = $1 AND
-				EXTRACT(MONTH FROM time_stamp) = EXTRACT(MONTH FROM CURRENT_TIMESTAMP);
+				EXTRACT(MONTH FROM time_stamp) = EXTRACT(MONTH FROM NOW());
 			`,
 			[organizationID]
 		)

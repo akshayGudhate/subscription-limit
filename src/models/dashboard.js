@@ -16,11 +16,8 @@ dashboard.getOrganizationListWithRequestDetails = () => postgres.query(
         vosd.email,
         vosd.subscription_plan,
         vosd.monthly_limit,
-        COUNT(r.request_id)	AS request_made,
-        COALESCE(
-            vosd.monthly_limit - count(r.request_id),
-            vosd.monthly_limit
-        ) AS request_remaining
+        COUNT(r.request_id)	                                                    AS request_made,
+        COALESCE(vosd.monthly_limit - count(r.request_id), vosd.monthly_limit)  AS request_remaining
     FROM view_organization_subscription_details vosd
     LEFT OUTER JOIN requests r
     ON r.organization_id = vosd.organization_id
