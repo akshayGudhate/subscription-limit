@@ -31,21 +31,23 @@ app.use(
 
 
 /////////////////////////
+//      api routes     //
+/////////////////////////
+
+app.use("/api/v1", apiRouter);								// router - api version-1
+
+
+/////////////////////////
 //     start server    //
 /////////////////////////
 
-const startServer = async () => {
+const startServer = async (port) => {
 	try {
 		// initialize database
-		await database.initDatabase();						// database - init
-
-		// api routes
-		app.use("/api/v1", apiRouter);						// router - api version-1
+		await database.initDatabase();
 
 		// register http listener
-		app.listen(projectEnvironment.variables.port, () => {
-			console.info(`🚀 Server listening on port: ${projectEnvironment.variables.port}`);
-		});
+		app.listen(port, () => console.info(`🚀 Server listening on port: ${port}`));
 	} catch (err) {
 		// error
 		console.error("failed to start server!\n", err);
@@ -55,4 +57,4 @@ const startServer = async () => {
 //
 // call start server
 //
-startServer();
+startServer(projectEnvironment.variables.port);
