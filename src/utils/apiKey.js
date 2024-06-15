@@ -2,7 +2,7 @@
 //     new api key     //
 /////////////////////////
 
-const generateAPIKey = () => {
+const generateApiKey = () => {
     // characters
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     // result
@@ -20,4 +20,4 @@ const generateAPIKey = () => {
 
 
 
-module.exports = { generateAPIKey };
+module.exports = { generateApiKey };

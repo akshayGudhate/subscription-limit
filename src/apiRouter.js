@@ -15,7 +15,7 @@ const middlewareAuth = require("./middlewares/auth");			        // middleware - 
 router.post("/organization", controllerOrganization.registerOrganization);
 
 // route - request	            
-router.get("/request", middlewareAuth.validateAPIKey, controllerRequest.handleRequest);
+router.get("/request", middlewareAuth.validateApiKey, controllerRequest.handleRequest);
 
 // route - dashboard
 router.get("/dashboard", controllerDashboard.adminDashboard);

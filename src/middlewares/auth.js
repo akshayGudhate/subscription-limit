@@ -1,6 +1,8 @@
 // models
 const modelOrganization = require("../models/organization");	// model - organization
 const modelRequest = require("../models/request");				// model - request
+// services
+const serviceHashing = require("../services/hashing");			// service - hashing
 // utils
 const responseHandler = require("../utils/responseHandler");	// util - response handler
 
@@ -9,38 +11,47 @@ const responseHandler = require("../utils/responseHandler");	// util - response 
 //    check validity    //
 //////////////////////////
 
-const validateAPIKey = async (req, res, next) => {
-	//
+const validateApiKey = async (req, res, next) => {
 	// parse request details
-	//
-	const apiKey = req.headers['x-api-key'];
+	const userApiKey = req.headers['x-api-key'];
 
 	//
 	// validate key
 	//
 	try {
-		if (!apiKey) {
+		if (!userApiKey) {
 			// send http response
 			return responseHandler(res, 401, "Please add API key!");
 		};
 
-		// get organization details by api key
-		const resultOrganizationDetails = await modelOrganization.getOrganizationDetailsByKey(apiKey);
+		// get organization details by id
+		const [apiKeyActual, organizationID] = userApiKey.split(":");
+		const resultOrganizationDetails = await modelOrganization.getOrganizationDetailsByID(organizationID);
 
 		//
-		// if invalid
+		// if invalid - wrong organization
 		//
 		if (resultOrganizationDetails.rowCount == 0) {
 			// send http response
-			return responseHandler(res, 403, "Invalid add API key!");
+			return responseHandler(res, 403, "Invalid API key!");
+		}
+
+		const organizationDetails = resultOrganizationDetails.rows[0];
+		// check actual api key with stored hashed api key
+		const isOrganizationAndApiKeyMatching = serviceHashing.isHashMatching(apiKeyActual, organizationDetails.api_key);
+
+		//
+		// if invalid - wrong apiKeyActual
+		//
+		if (!isOrganizationAndApiKeyMatching) {
+			// send http response
+			return responseHandler(res, 403, "Invalid API key!");
 		}
 
 		//
-		// if valid then next
+		// if valid api key
 		//
-		const organizationDetails = resultOrganizationDetails.rows[0];
-		const remainingRequestCount = await modelRequest.getRemainingRequestCount(organizationDetails.organization_id);
-
+		const remainingRequestCount = await modelRequest.getRemainingRequestCount(organizationID);
 		// check request monthly limit
 		if (remainingRequestCount && remainingRequestCount == 0) {
 			// send http response
@@ -61,4 +72,4 @@ const validateAPIKey = async (req, res, next) => {
 
 
 
-module.exports = { validateAPIKey };
+module.exports = { validateApiKey };

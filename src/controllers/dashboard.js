@@ -10,7 +10,7 @@ const responseHandler = require("../utils/responseHandler");    // util - respon
 
 const adminDashboard = async (_req, res) => {
     try {
-        // save new review
+        // get organization list
         const organizationList = (await modelDashboard.getOrganizationListWithRequestDetails()).rows;
 
         // check for the data

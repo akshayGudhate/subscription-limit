@@ -24,11 +24,11 @@ organization.registerOrganization = (name, email, apiKey, subscriptionPlan, mont
 );
 
 // check api key exist or not
-organization.getOrganizationDetailsByKey = (apiKey) => postgres.query(
+organization.getOrganizationDetailsByID = (apiKey) => postgres.query(
     `
 	SELECT *
     FROM view_organization_subscription_details
-    WHERE api_key = $1;
+    WHERE organization_id = $1;
 	`,
     [apiKey]
 );
