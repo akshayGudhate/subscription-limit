@@ -144,7 +144,7 @@ The project makes use of node and its package manager to help you out carrying s
 $ git clone https://github.com/akshayGudhate/subscription-limit.git
 ```
 
-### Create .env file and add below variables
+### Create a .env file and add the below variables
 
 ```console
 $ cat <<EOL > .env
@@ -187,7 +187,7 @@ Below is a list of API endpoints with their respective input and output. Please 
 Endpoint
 
 ```text
-POST api/v1/organization
+POST /api/v1/organization
 ```
 
 Example of body
@@ -262,7 +262,7 @@ Example of output - on internal error
 Endpoint
 
 ```text
-GET api/v1/dashboard
+GET /api/v1/dashboard
 ```
 
 Example of output - no data
@@ -323,7 +323,7 @@ Example of output - on internal error
 Endpoint
 
 ```text
-GET api/v1/request
+GET /api/v1/request
 ```
 
 --header 'x-api-key: ltKnAmTeGa:1'
@@ -411,12 +411,13 @@ https://shrimant-peshawa-8.postman.co/workspace/NPAV-Projects~9557b0b2-2f86-495e
 
 
 ## TODO's
-Below are some of the points we can consider for improving **Reliability**, and **Scalability** of the existing system.
+Below are some of the points we can consider for improving the **Security**, **Reliability**, and **Scalability** of the existing system.
 
-- Need to implement the _isAdmin_ check using middleware for _Authorization_ purposes.
+- _UUID_ can be used for the ID generation instead of _SERIAL INTEGRES_.
 - While generating _apiKey_ we can use _subdomain_ instead of _organizationID_.
-- The use of **In-Memory Cache** can speed up the request handling transactions.
+- Need to implement the _isAdmin_ check using middleware for _Authorization_ purposes.
 - We can leverage **Asynchronous Architecture** for tasks like _Register Organization_ and _API Key Generation_ as it can afford delay.
+- The use of **In-Memory Cache** can speed up the request handling transactions.
 - We can add more features like.. **Payments, Subscriptions, and Notifications**.
 
 
