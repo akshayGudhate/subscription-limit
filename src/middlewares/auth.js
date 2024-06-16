@@ -5,6 +5,8 @@ const modelRequest = require("../models/request");				// model - request
 const serviceHashing = require("../services/hashing");			// service - hashing
 // utils
 const responseHandler = require("../utils/responseHandler");	// util - response handler
+// environment
+const projectEnv = require("../environment");	            	// environment
 
 
 //////////////////////////
@@ -21,7 +23,7 @@ const validateApiKey = async (req, res, next) => {
 	try {
 		if (!userApiKey) {
 			// send http response
-			return responseHandler(res, 401, "Please add API key!");
+			return responseHandler(res, projectEnv.http.CODE_401, projectEnv.logger.MESSAGE_ADD_KEY);
 		};
 
 		// get organization details by id
@@ -33,7 +35,7 @@ const validateApiKey = async (req, res, next) => {
 		//
 		if (resultOrganizationDetails.rowCount == 0) {
 			// send http response
-			return responseHandler(res, 403, "Invalid API key!");
+			return responseHandler(res, projectEnv.http.CODE_403, projectEnv.logger.MESSAGE_INVALID_KEY);
 		}
 
 		const organizationDetails = resultOrganizationDetails.rows[0];
@@ -45,7 +47,7 @@ const validateApiKey = async (req, res, next) => {
 		//
 		if (!isOrganizationAndApiKeyMatching) {
 			// send http response
-			return responseHandler(res, 403, "Invalid API key!");
+			return responseHandler(res, projectEnv.http.CODE_403, projectEnv.logger.MESSAGE_INVALID_KEY);
 		}
 
 		//
@@ -55,7 +57,7 @@ const validateApiKey = async (req, res, next) => {
 		// check request monthly limit
 		if (remainingRequestCount && remainingRequestCount == 0) {
 			// send http response
-			return responseHandler(res, 429, "Too many requests.");
+			return responseHandler(res, projectEnv.http.CODE_429, projectEnv.logger.MESSAGE_TOO_MANY_REQUESTS);
 		};
 
 		// attach organization details to request object
@@ -66,7 +68,7 @@ const validateApiKey = async (req, res, next) => {
 		next();
 	} catch (err) {
 		// send http response
-		return responseHandler(res, 500, "Something went wrong. An error has occurred.", null, err);
+		return responseHandler(res, projectEnv.http.CODE_500, projectEnv.logger.MESSAGE_INTERNAL_ERROR, null, err);
 	}
 };
 

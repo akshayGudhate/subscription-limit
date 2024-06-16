@@ -2,6 +2,8 @@
 const modelDashboard = require("../models/dashboard");          // model - dashboard
 // utils
 const responseHandler = require("../utils/responseHandler");    // util - response handler
+// environment
+const projectEnv = require("../environment");					// environment
 
 
 ///////////////////////
@@ -16,14 +18,14 @@ const adminDashboard = async (_req, res) => {
         // check for the data
         if (organizationList.length == 0) {
             // send http response
-            return responseHandler(res, 404, "No data found!", []);
+            return responseHandler(res, projectEnv.http.CODE_404, projectEnv.logger.MESSAGE_NO_DATA, []);
         };
 
         // send http response
-        return responseHandler(res, 200, "Organization list fetched successfully!", organizationList);
+        return responseHandler(res, projectEnv.http.CODE_200, projectEnv.logger.MESSAGE_ORG_LIST, organizationList);
     } catch (err) {
         // send http response
-        return responseHandler(res, 500, "Something went wrong. An error has occurred.", null, err);
+        return responseHandler(res, projectEnv.http.CODE_500, projectEnv.logger.MESSAGE_INTERNAL_ERROR, null, err);
     }
 };
 

@@ -134,9 +134,26 @@ Views:
 - _Organization details_: this api has a monthly limit.
 
 
-## Useful commands
+## Setup & Useful commands
 
 The project makes use of node and its package manager to help you out carrying some common tasks such as running a project.
+
+### Clone the repository
+
+```console
+$ git clone https://github.com/akshayGudhate/subscription-limit.git
+```
+
+### Create .env file and add below variables
+
+```console
+$ cat <<EOL > .env
+PORT=8080
+DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<dbName>
+MONTHLY_LIMIT_BASIC=10
+MONTHLY_LIMIT_ADVANCE=20
+EOL
+```
 
 ### Install dependencies
 

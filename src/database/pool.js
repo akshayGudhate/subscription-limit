@@ -1,6 +1,6 @@
-const { Pool } = require("pg");							// postgres connection pool
+const { Pool } = require("pg");					// postgres connection pool
 // environment
-const projectEnvironment = require("../environment");	// util - environment
+const projectEnv = require("../environment");	// util - environment
 
 
 /////////////////////////
@@ -8,7 +8,7 @@ const projectEnvironment = require("../environment");	// util - environment
 /////////////////////////
 
 // create postgres pool
-const pool = new Pool({ connectionString: projectEnvironment.variables.databaseURL });
+const pool = new Pool({ connectionString: projectEnv.variables.databaseURL });
 
 
 /////////////////////////
@@ -16,7 +16,7 @@ const pool = new Pool({ connectionString: projectEnvironment.variables.databaseU
 /////////////////////////
 
 pool.on("error", (err) => {
-	console.error("failed to connect database!\n", err);
+	console.error(projectEnv.logger.ERROR_DB_OCCURRED, err);
 });
 
 
